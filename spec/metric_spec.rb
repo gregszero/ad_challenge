@@ -12,4 +12,9 @@ describe Metric do
                                                             'Bulleit Frontier Works bar / FAR rohn&rojas'])
   end
 
+  it 'calculate best performant sites by pageview in June' do
+    expect(@metric.best_performant_sites(6)).to eq([['cl', 39_870], ['mx', 24_403], ['co', 24_403], ['pe', 24_403],
+                                                    ['us', 15_467]])
+  end
+
 end
