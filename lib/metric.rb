@@ -21,6 +21,18 @@ class Metric
                               .map { |project| project['title'] }
   end
 
+  # Calculates which where the most performant sites (sites with more pageviews) with their number of pageviews,
+  # in descending order in a given month.
+  def best_performant_sites(month)
+    projects = projects_from_month(month)
+    sites = projects.map { |project| project['sites'] }.flatten.uniq
+    sites.map do |site|
+      [site, projects.select { |project| project['sites'].include? site }
+                     .map { |project| project['pageviews'] }.sum]
+    end.sort_by { |site| site[1] }.reverse
+  end
+
+  
   private
 
   def projects_from_month(month)
