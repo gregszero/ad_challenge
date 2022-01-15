@@ -17,4 +17,8 @@ describe Metric do
                                                     ['us', 15_467]])
   end
 
+  it 'calculates how many bookmarks were created on June' do
+    expect(@metric.bookmarks_per_month(6)).to eq(9)
+  end
+
 end
