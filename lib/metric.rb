@@ -32,7 +32,12 @@ class Metric
     end.sort_by { |site| site[1] }.reverse
   end
 
-  
+  # Calculates how many bookmarks were created on a given month
+  def bookmarks_per_month(month)
+    @data.map { |project| project['bookmarks'].count { |bookmark| Date.parse(bookmark['created_at']).month == month } }
+         .sum
+  end
+
   private
 
   def projects_from_month(month)
